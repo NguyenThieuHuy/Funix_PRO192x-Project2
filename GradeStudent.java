@@ -20,12 +20,11 @@ public class GradeStudent {
     public double midTerm() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nMidterm:");
-        System.out.print("Weight (0-100)? ");
-        int weight = scanner.nextInt();
-        if (weight > 100 || weight < 0) {
+        int weight;
+        do {
             System.out.print("Weight (0-100)? ");
             weight = scanner.nextInt();
-        }
+        } while (weight > 100 || weight < 0);
         Weight.add(weight);
         System.out.print("Score earned? ");
         int score = scanner.nextInt();
@@ -39,6 +38,9 @@ public class GradeStudent {
             shift = 0;
         }
         int total = score + shift;
+        if (total > 100) {
+            total = 100;
+        }
         double weightedScore = (total/100.0)*weight;
         System.out.println("Total points = " + total + " / 100");
         System.out.println("Weighted score = " + Math.round(weightedScore * 100.0) / 100.0 + " / " + weight);
@@ -58,13 +60,11 @@ public class GradeStudent {
         for (Integer integer : Weight) {
             sum += integer;
         }
-
-        System.out.print("Weight (0-" + (100 - sum) + ")? ");
-        int weight = scanner.nextInt();
-        if (weight > (100 - sum) || weight < 0) {
+        int weight;
+        do {
             System.out.print("Weight (0-" + (100 - sum) + ")? ");
             weight = scanner.nextInt();
-        }
+        } while (weight > (100 - sum) || weight < 0);
         Weight.add(weight);
 
         System.out.print("Score earned? ");
@@ -79,6 +79,9 @@ public class GradeStudent {
             shift = 0;
         }
         int total = score + shift;
+        if (total > 100) {
+            total = 100;
+        }
         double weightedScore = (total/100.0)*weight;
         System.out.println("Total points = " + total + " / 100");
         System.out.println("Weighted score = " + Math.round(weightedScore * 100.0) / 100.0 + " / " + weight);
